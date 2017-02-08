@@ -1,0 +1,43 @@
+{
+  "name": "greek",
+  "version": "0.1.0",
+  "description": "An idiomatic/DSL-based alternative to JSX",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "coffee -o lib/ -c src/*",
+    "test": "mocha spec --recursive --require spec/helpers/chai.js --require coffee-script/register --compilers coffee:coffee-script/register",
+    "test-watch": "mocha --recursive -b -w spec --require spec/helpers/chai.js --require coffee-script/register --compilers coffee:coffee-script/register,litcoffee:coffee-script/register ",
+    "test-debug": "node-debug node_modules/mocha/bin/_mocha  --recursive spec --require spec/helpers/chai.js --require coffee-script/register --compilers coffee:coffee-script/register --no-timeouts --debug-brk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ldegen/greek.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "jsx",
+    "dom",
+    "virtual dom",
+    "DSL"
+  ],
+  "author": "Lukas Degener",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/ldegen/greek/issues"
+  },
+  "homepage": "https://github.com/ldegen/greek#readme",
+  "devDependencies": {
+    "bluebird": "^3.4.7",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "coffee-script": "^1.12.3",
+    "mocha": "^3.2.0",
+    "node-inspector": "^0.12.8",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "dependencies": {
+    "sigmatch": "^0.9.0"
+  }
+}
