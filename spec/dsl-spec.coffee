@@ -45,7 +45,13 @@ describe "The greek-DSL", ->
 
 
   
-  it "works with components that are instances of React.Component"
+  it "works with components that are instances of React.Component",->
+    class Foo extends React.Component
+      render: -> h1 "Works #{@props.how}!"
+    Foo_ = React.createFactory Foo
+    expect(render div Foo_ how:"great").to.eql '<div><h1>Works great!</h1></div>'
+    expect(render Foo_ how:"great").to.eql '<h1>Works great!</h1>'
+
   it "works with 'pure functional' components", ->
     Foo = ({how})-> h1 "Works #{how}!"
     _ = (constructor)->React.createFactory constructor
