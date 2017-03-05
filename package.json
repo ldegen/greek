@@ -1,6 +1,6 @@
 {
   "name": "greek",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An idiomatic/DSL-based alternative to JSX",
   "main": "lib/index.js",
   "scripts": {
