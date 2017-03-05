@@ -13,56 +13,9 @@ mistake myself. :-)
 Also, as you may have guessed from the pre-1.0 version number: things my change
 in all kinds of incompatible ways. I am still experimenting with this.
 
+## Install
 
-## Motivation
-
-There is -- at least in my opinion -- nothing wrong with JSX. In particular, if
-you are a happy ES6 user, stick with the [Babel
-transpiler](http://babeljs.io/), it should cover pretty much all you will ever
-need and more.
-
-I prefer CoffeeScript over Javascript. I know there are a couple of attempts of
-doing something like JSX with Coffeescript, but I found the approach taken by
-the abovementioned blog posts even more intriguing. If you play around with the
-[Babel "REPL"](http://babeljs.io/repl/), you can see that the stuff that looks
-like SGML simply translates to a isomorphic structure of nested calls to
-`React.createElement`. It is quite readable, even in Javascript, and even more
-so if you use some short-hand name instead of `React.createElement`.
-
-```javascript
-E("div", { className: "example" },
-  E("h3", null,"Have a list:"),
-  E("ul",null,
-    E("li",null,"first item"),
-    E("li",null,"second item")
-  ),
-  E(MyCustomComponent, { foo: bar / 2 })
-);
-```
-
-Or, using coffeescript:
-
-```coffee
-E "div", className: "example",
-  E "h3", null, "Have a list:"
-  E "ul", null,
-    E "li", null, "first item"
-    E "li", null, "second item"
-  E MyCustomComponent, foo: bar / 2
-```
-
-This is not bad, but we can do better. 
-
--   Is it really necessary to use string literals?
-
--   Maybe we can get rid of the `E` functor?
-
--   Having to write `null` if there are no attributes kinda sucks.
-    Surely there is another way?
-
-These questions are related. For all the standard HTML elements
-we can predefine functions that behave like partially evaluated versions of
-`React.createElement`. An this is basically what the `greek` does.
+The usual `npm install greek` should do.
 
 ## Usage
 
@@ -113,6 +66,58 @@ work a bit different in our case, since we decided to remove the
 It is not that bad once you realize what is going on.  But when you are new to
 React, this is _very_ confusing, and it gets even worse if you are are working
 with higher order components. 
+
+## My motivation for doing this
+
+There is -- at least in my opinion -- nothing wrong with JSX. In particular, if
+you are a happy ES6 user, stick with the [Babel
+transpiler](http://babeljs.io/), it should cover pretty much all you will ever
+need and more.
+
+I prefer CoffeeScript over Javascript. I know there are a couple of attempts of
+doing something like JSX with Coffeescript, but then again: why?
+After all, JSX compiles down to simple javascript. If you play around with the
+[Babel "REPL"](http://babeljs.io/repl/), you can see that the stuff that looks
+like HTML simply translates to an isomorphic structure of nested calls to
+`React.createElement`. It is quite readable, even in Javascript, and even more
+so if you use some short-hand name instead of `React.createElement`. 
+I used `E` here:
+
+```javascript
+E("div", { className: "example" },
+  E("h3", null,"Have a list:"),
+  E("ul",null,
+    E("li",null,"first item"),
+    E("li",null,"second item")
+  ),
+  E(MyCustomComponent, { foo: bar / 2 })
+);
+```
+
+Or, using coffeescript:
+
+```coffee
+E "div", className: "example",
+  E "h3", null, "Have a list:"
+  E "ul", null,
+    E "li", null, "first item"
+    E "li", null, "second item"
+  E MyCustomComponent, foo: bar / 2
+```
+
+This is not bad, but we can do better. 
+
+-   Is it really necessary to use string literals?
+
+-   Maybe we can get rid of the `E` functor?
+
+-   Having to write `null` if there are no attributes kinda sucks.
+    Surely there is another way?
+
+Clearly, we need to do some meta-programming. For all the standard HTML elements
+we can predefine functions that behave like partially evaluated versions of
+`React.createElement`. And this is basically what the `greek` does.
+
 
 ## Previous Work
 
