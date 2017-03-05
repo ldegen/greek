@@ -2,7 +2,7 @@
   "name": "greek",
   "version": "0.1.0",
   "description": "An idiomatic/DSL-based alternative to JSX",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "prepublish": "coffee -o lib/ -c src/*",
     "test": "mocha spec --recursive --require spec/helpers/chai.js --require coffee-script/register --compilers coffee:coffee-script/register",
