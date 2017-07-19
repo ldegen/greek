@@ -1,9 +1,9 @@
-describe "The greek-DSL", ->
+describe "The functor-less DSL", ->
   DSL = require "../src/dsl"
   ReactDomServer = require "react-dom/server"
   React = require "react"
 
-  {div, ul, li,h1,p,br} = DSL
+  {div, ul, li,h1,p,br} = DSL builtins:Object.keys(React.DOM), createElement:React.createElement, isValidElement:React.isValidElement
   render = (element)-> ReactDomServer.renderToStaticMarkup element
     
   it "can represent elements with a single child and no attributes", ->
@@ -22,7 +22,7 @@ describe "The greek-DSL", ->
     ]
     expect(render element).to.eql '<div><h1>tag</h1><p>Ein schöner Tag</p></div>'
   it "can represent elements with attributes but no children", ->
-    element = DSL.div className: "spitzenklasse"
+    element = div className: "spitzenklasse"
     expect(render element).to.eql '<div class="spitzenklasse"></div>'
   it "can represent elements with attributes and children", ->
     element = div id:"div-42", className: "test", [
