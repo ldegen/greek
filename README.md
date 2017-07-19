@@ -136,6 +136,26 @@ we do not have to wrap them with `createFactory` first.
 Another thing that is different: the syntax for children is less lenient.
 When there is more than one child it *must* be put into an array.
 
+Here is the Example from above, but using the "unfancy" API:
+```coffee
+DSL = require "greek"
+{G} = DSL
+  createElement:React.createElement
+  isValidElement:React.isValidElement
+
+MyCustomComponent = React.createFactory require "my-custom-component"
+
+renderSomething = ->
+  G "div", className: "example", [
+    G "h3", "Have a list:"
+    G "ul", [
+      G "li", "first item"
+      G "li", "second item"
+    ]
+    G MyCustomComponent, foo: bar / 2
+  ]
+```
+
 ## Breaking Changes in 0.2
 
 I mentioned this is pre 1.0, right?
