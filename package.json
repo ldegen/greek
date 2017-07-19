@@ -1,6 +1,6 @@
 {
   "name": "greek",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "An idiomatic/DSL-based alternative to JSX",
   "main": "lib/dsl.js",
   "scripts": {
