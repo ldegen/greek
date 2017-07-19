@@ -143,7 +143,7 @@ DSL = require "greek"
   createElement:React.createElement
   isValidElement:React.isValidElement
 
-MyCustomComponent = React.createFactory require "my-custom-component"
+MyCustomComponent = require "my-custom-component"
 
 renderSomething = ->
   G "div", className: "example", [
